@@ -33,21 +33,20 @@ with sync_playwright() as p:
         };
     }""")
 
-    
-print("Checkout button details:", details)
+    print("Checkout button details:", details)
 
-test_passed = details["right"] <= details["viewportWidth"]
+    test_passed = details["right"] <= details["viewportWidth"]
 
-if test_passed:
-    print("STATUS: PASS")
-    print("Checkout button fits within the viewport.")
-else:
-    print("STATUS: FAIL")
-    print("UI BUG FOUND: Checkout button extends beyond the viewport!")
+    if test_passed:
+        print("STATUS: PASS")
+        print("Checkout button fits within the viewport.")
+    else:
+        print("STATUS: FAIL")
+        print("UI BUG FOUND: Checkout button extends beyond the viewport!")
 
-    page.screenshot(
-        path="screenshots/buggy_mobile.png",
-        full_page=True
-    )
+        page.screenshot(
+            path="screenshots/buggy_mobile.png",
+            full_page=True
+        )
 
     browser.close()
